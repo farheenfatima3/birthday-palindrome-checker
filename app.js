@@ -155,16 +155,24 @@ function input(str){
       
         var limitDate=[31,28,31,30,31,30,31,31,30,31,30,31]
         
-      if(day<1){
-        day=limitDate[month-1]
-      
+      if(day==0){      
       month--
       
-      }
-      if(month<1){
+      
+      if(month==0){
         month=12;
+        day=31;
         year--
+      }else if(month==2){
+          if(leap(year)){
+              day=29;
+          }else{
+              day=28;
+          }
+      }else{
+          day=limitDate[month-1]
       }
+    }
       return {day:day,month:month,year:year}
       
       }
@@ -178,6 +186,7 @@ function input(str){
           var nextP=findPalindrome(prev)
           
             if(nextP){
+               
               return [count1,prev]
             }
           
