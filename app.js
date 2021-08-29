@@ -2,6 +2,7 @@ const dateFromUser=document.querySelector("#inputDate");
 const checkButton=document.querySelector("#btn")
 const out=document.querySelector("#msg")
 
+
 checkButton.addEventListener("click", input)
 
 
@@ -17,14 +18,17 @@ function input(str){
             var isPalindrome=findPalindrome(date)
             if(isPalindrome){
                 out.innerText="Yay! Your birthday is a palindrome."
+                out.style.color="#6D28D9"
             }else{
                 var [count,nextDate]=getNextPalindrome(date)
                 var [count1,prev]=findPrevPalindrome(date)
 
                 if(count>count1){
-                    out.innerText=`Nearest palindrome date is ${prev.day}/${prev.month}/${prev.year} which is ${count1} days before your birthday.`
+                    out.innerText=`Its not a palindrome date☹️. Nearest palindrome date is ${prev.day}/${prev.month}/${prev.year} which is ${count1} days before your birthday.🎉`
+                    out.style.color="red"
                 }else{
-                out.innerText=`Nearest palindrome date is ${nextDate.day}/${nextDate.month}/${nextDate.year} which is ${count} days after your birthday.`
+                out.innerText=`Its not a palindrome date☹️. Nearest palindrome date is ${nextDate.day}/${nextDate.month}/${nextDate.year} which is ${count} days after your birthday.🎉`
+                out.style.color="red"
             }
         }
         }
@@ -70,11 +74,13 @@ function input(str){
         var dates=format(date)
       
         let bol=false
+      
         for(let i=0;i<dates.length;i++){
             
           if(reverseStr(dates[i])){
-              
+             
             bol=true
+           
           }
         }  
           
